@@ -28,7 +28,7 @@ namespace GameSpawn.TriggerExamples {
     }
 
     void HandleButtons(){
-      var ent = TriggerHandler.GetOverlapEntity(typeof(ButtonTrigger), transform.position);
+      var ent = TriggerHandler.GetOverlapEntity<ButtonTrigger>(transform.position);
 
       mat.SetColor("_Color", ent ? Color.green : Color.white);
     }

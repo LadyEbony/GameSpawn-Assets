@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameSpawn {
-  public class TriggerEntity : MonoBehaviour {
+  public class TriggerEntity : GlobalMonoBehaviour {
 
     private TriggerBounds bound;
 
-    private void Awake() {
-      TriggerHandler.AddEntity(this);
+    public override void Awake(){
+      base.Awake();
       bound = GetComponent<TriggerBounds>();
-    }
-
-    private void OnDestroy() {
-      TriggerHandler.RemoveEntity(this);
     }
 
     public bool Contains(Vector3 pos){

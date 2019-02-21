@@ -7,37 +7,22 @@ using Type = System.Type;
 namespace GameSpawn {
   public static class TriggerHandler {
 
-    private static Dictionary<Type, List<TriggerEntity>> entities;
-
-    static TriggerHandler(){
-      entities = new Dictionary<Type, List<TriggerEntity>>();
-    }
-
     /// <summary>
     /// Returns all entities of the provided <paramref name="type"/>.
     /// Returns an empty list if no entities exist.
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    public static List<TriggerEntity> GetEntities(Type type){
-      if (!type.IsSubclassOf(typeof(TriggerEntity))){
-        throw new System.Exception(string.Format("Type '{0}' is not a subclass of TriggerEntity", type.Name));
-      }
-
-      List<TriggerEntity> list;
-      if (!entities.TryGetValue(type, out list)){
-        list = new List<TriggerEntity>();
-        entities.Add(type, list);
-      }
-      return list;
+    public static List<T> GetEntities<T>() where T : TriggerEntity{
+      return GlobalMBList.GetEntities<T>();
     }
 
-    public static void AddEntity(TriggerEntity entity){
-      GetEntities(entity.GetType()).Add(entity);
+    public static void AddEntity<T>(T entity) where T : TriggerEntity{
+      GlobalMBList.AddEntity(entity);
     }
 
-    public static bool RemoveEntity(TriggerEntity entity){
-      return GetEntities(entity.GetType()).Remove(entity);
+    public static bool RemoveEntity<T>(T entity) where T : TriggerEntity{
+      return GlobalMBList.RemoveEntity(entity);
     }
 
     /// <summary>
@@ -48,8 +33,8 @@ namespace GameSpawn {
     /// <param name="type"></param>
     /// <param name="pos"></param>
     /// <returns></returns>
-    public static TriggerEntity GetOverlapEntity(Type type, Vector3 pos){
-      foreach(var entity in GetEntities(type)){
+    public static T GetOverlapEntity<T>(Vector3 pos) where T : TriggerEntity{
+      foreach(var entity in GetEntities<T>()){
         if (entity.Contains(pos))
           return entity;
       }
@@ -65,9 +50,9 @@ namespace GameSpawn {
     /// <param name="pos"></param>
     /// <param name="entities"></param>
     /// <returns></returns>
-    public static int GetOverlapEntities(Type type, Vector3 pos, TriggerEntity[] entities){
+    public static int GetOverlapEntities<T>(Vector3 pos, T[] entities) where T : TriggerEntity{
       var i = 0;
-      foreach(var entity in GetEntities(type)){
+      foreach(var entity in GetEntities<T>()){
         if (entity.Contains(pos)) {
           entities[i] = entity;
           i++;
@@ -84,9 +69,9 @@ namespace GameSpawn {
     /// <param name="type"></param>
     /// <param name="pos"></param>
     /// <returns></returns>
-    public static TriggerEntity[] GetOverlapEntities(Type type, Vector3 pos){
-      var list = new List<TriggerEntity>();
-      foreach(var entity in GetEntities(type)){
+    public static T[] GetOverlapEntities<T>(Vector3 pos) where T :TriggerEntity{
+      var list = new List<T>();
+      foreach(var entity in GetEntities<T>()){
         if (entity.Contains(pos)){
           list.Add(entity);
         }
