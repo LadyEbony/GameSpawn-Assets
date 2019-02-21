@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace GameSpawn.TriggerExamples {
   public class ButtonTrigger : TriggerEntity {
-    
-    
+
 
   }
 }

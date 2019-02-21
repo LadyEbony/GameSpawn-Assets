@@ -7,23 +7,6 @@ using Type = System.Type;
 namespace GameSpawn {
   public static class TriggerHandler {
 
-    /// <summary>
-    /// Returns all entities of the provided <paramref name="type"/>.
-    /// Returns an empty list if no entities exist.
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    public static List<T> GetEntities<T>() where T : TriggerEntity{
-      return GlobalMBList.GetEntities<T>();
-    }
-
-    public static void AddEntity<T>(T entity) where T : TriggerEntity{
-      GlobalMBList.AddEntity(entity);
-    }
-
-    public static bool RemoveEntity<T>(T entity) where T : TriggerEntity{
-      return GlobalMBList.RemoveEntity(entity);
-    }
 
     /// <summary>
     /// Returns the first entity that contains <paramref name="pos"/>.
@@ -34,7 +17,7 @@ namespace GameSpawn {
     /// <param name="pos"></param>
     /// <returns></returns>
     public static T GetOverlapEntity<T>(Vector3 pos) where T : TriggerEntity{
-      foreach(var entity in GetEntities<T>()){
+      foreach (var entity in GlobalList<T>.GetList){
         if (entity.Contains(pos))
           return entity;
       }
@@ -52,7 +35,7 @@ namespace GameSpawn {
     /// <returns></returns>
     public static int GetOverlapEntities<T>(Vector3 pos, T[] entities) where T : TriggerEntity{
       var i = 0;
-      foreach(var entity in GetEntities<T>()){
+      foreach(var entity in GlobalList<T>.GetList) {
         if (entity.Contains(pos)) {
           entities[i] = entity;
           i++;
@@ -71,7 +54,7 @@ namespace GameSpawn {
     /// <returns></returns>
     public static T[] GetOverlapEntities<T>(Vector3 pos) where T :TriggerEntity{
       var list = new List<T>();
-      foreach(var entity in GetEntities<T>()){
+      foreach(var entity in GlobalList<T>.GetList) {
         if (entity.Contains(pos)){
           list.Add(entity);
         }
