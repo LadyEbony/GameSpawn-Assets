@@ -15,7 +15,8 @@ namespace GameSpawn.TriggerExamples {
     private bool inTrigger = false;
     private bool on = false;
 
-    private void OnEnable() {
+    public override void OnEnable() {
+      base.OnEnable();
       UpdateColor();
     }
 

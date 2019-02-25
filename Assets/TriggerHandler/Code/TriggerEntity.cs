@@ -8,14 +8,16 @@ namespace GameSpawn {
     private TriggerBounds bound;
 
     public virtual void Awake(){
-      // While ineffecient, guarantees that you don't forget calling it.
-      // Override this method if you don't want this functionality.
-      GlobalList.AddReference(this);
-
       bound = GetComponent<TriggerBounds>();
     }
 
-    public virtual void OnDestroy(){
+    public virtual void OnEnable(){
+      // While ineffecient, guarantees that you don't forget calling it.
+      // Override this method if you don't want this functionality.
+      GlobalList.AddReference(this);
+    }
+
+    public virtual void OnDisable(){
       GlobalList.RemoveReference(this);
     }
 

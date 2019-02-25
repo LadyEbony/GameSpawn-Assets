@@ -7,14 +7,14 @@ namespace GameSpawn.TriggerExamples {
 
     public float speed = 1;
 
-    private void Awake() {
+    private void OnEnable() {
       // The GlobalList is not restricted to TriggerEntity.
       // Any class can use it.
       GlobalList<Player>.Add(this);
     }
 
-    private void OnDestroy() {
-      GlobalList<Player>.Add(this);
+    private void OnDisable() {
+      GlobalList<Player>.Remove(this);
     }
 
     void Update() {
