@@ -32,6 +32,11 @@ namespace GameSpawn {
       return Vector3.SqrMagnitude(pos - offsetCenter) < scaledSqrRadius;
     }
 
+    public override bool Contains(Vector3 pos, out float sqrDistance) {
+      sqrDistance = Vector3.SqrMagnitude(pos - offsetCenter);
+      return sqrDistance < scaledSqrRadius;
+    }
+
     public override void OnDrawGizmosSelected() {
       Gizmos.color = Color.green;
       Gizmos.DrawWireSphere(offsetCenter, scaledRadius);

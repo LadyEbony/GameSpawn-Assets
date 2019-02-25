@@ -44,6 +44,45 @@ namespace GameSpawn {
   }
 
   /// <summary>
+  /// Generic static list of <typeparamref name="T"/>. Uses mask to seperate Add and remove the contents on your accord.
+  /// </summary>
+  /// <remarks>
+  /// GlobalList provides ease of use when you need to track every to most
+  /// references of the same type.
+  /// 
+  /// You must specify the exact Type. As such, this is not friendly towards inheritance classes.
+  /// </remarks>
+  /// <typeparam name="T"></typeparam>
+  public static class GlobalMaskList<T> {
+    private static List<T>[] maskedLists;
+
+    static GlobalMaskList() {
+      maskedLists = new List<T>[8];
+      for (int i = 0; i < maskedLists.Length; i++)
+        maskedLists[i] = new List<T>();
+    }
+
+    /// <summary>
+    /// The unmodifyable masked list of <see cref="GlobalMaskList{T}"/> at <paramref name="mask"/>.
+    /// </summary>
+    public static IReadOnlyCollection<T> GetMaskedList(int mask) {
+      return maskedLists[mask];
+    }
+
+    public static void Add(T item, int mask) {
+      GlobalList<T>.Add(item);
+      maskedLists[mask].Add(item);
+    }
+
+    public static bool Remove(T item, int mask) {
+      var r1 = GlobalList<T>.Remove(item);
+      var r2 = maskedLists[mask].Remove(item);
+      return r1 || r2;
+    }
+
+  }
+
+  /// <summary>
   /// Wrapper class that adds and removes items from <see cref="GlobalList{T}"/> 
   /// using <see cref="object.GetType()"/> as the type. 
   /// Less effecient than using <see cref="GlobalList{T}"/> directly.

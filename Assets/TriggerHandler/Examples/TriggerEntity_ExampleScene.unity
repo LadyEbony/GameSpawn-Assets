@@ -980,7 +980,7 @@ GameObject:
   - component: {fileID: 1413821536}
   - component: {fileID: 1413821535}
   - component: {fileID: 1413821534}
-  - component: {fileID: 1413821533}
+  - component: {fileID: 1413821537}
   m_Layer: 0
   m_Name: Button 1 (1)
   m_TagString: Untagged
@@ -1003,18 +1003,6 @@ Transform:
   m_Father: {fileID: 1847790910}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1413821533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413821531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10e56be4436c8614bac0d934b1e06141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1413821534
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1075,6 +1063,21 @@ MonoBehaviour:
   bound:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1413821537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413821531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faec39e7e4f179c42b2b363e54cbaf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mask: 0
+  state: 0
+  Submit: 0
 --- !u!1 &1596896603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,7 +1183,7 @@ GameObject:
   - component: {fileID: 1782837638}
   - component: {fileID: 1782837637}
   - component: {fileID: 1782837636}
-  - component: {fileID: 1782837635}
+  - component: {fileID: 1782837639}
   m_Layer: 0
   m_Name: Button 1 (2)
   m_TagString: Untagged
@@ -1203,18 +1206,6 @@ Transform:
   m_Father: {fileID: 1847790910}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1782837635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782837633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10e56be4436c8614bac0d934b1e06141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1782837636
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1275,6 +1266,21 @@ MonoBehaviour:
   bound:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1782837639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782837633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faec39e7e4f179c42b2b363e54cbaf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mask: 0
+  state: 0
+  Submit: 0
 --- !u!1 &1817246508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1367,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1847790910}
+  - component: {fileID: 1847790911}
+  - component: {fileID: 1847790912}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -1385,6 +1393,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1847790911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847790909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e68f7131a3a4843b8b69b6c5bcd050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mask: 0
+--- !u!114 &1847790912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847790909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffbcbae3fcf43004d8e404155c9e479c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1867125867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,7 +1521,7 @@ GameObject:
   - component: {fileID: 2032035747}
   - component: {fileID: 2032035746}
   - component: {fileID: 2032035745}
-  - component: {fileID: 2032035748}
+  - component: {fileID: 2032035750}
   m_Layer: 0
   m_Name: Button 1
   m_TagString: Untagged
@@ -1571,7 +1604,7 @@ MonoBehaviour:
   bound:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0.5}
---- !u!114 &2032035748
+--- !u!114 &2032035750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1580,6 +1613,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2032035743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10e56be4436c8614bac0d934b1e06141, type: 3}
+  m_Script: {fileID: 11500000, guid: faec39e7e4f179c42b2b363e54cbaf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mask: 0
+  state: 0
+  Submit: 0

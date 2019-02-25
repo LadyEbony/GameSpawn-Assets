@@ -32,5 +32,19 @@ namespace GameSpawn {
       return bound.Contains(point);
     }
 
+    /// <summary>
+    /// Is point contained in the bounds?
+    /// Returns squared distance from point.
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public bool Contains(Vector3 point, out float sqrDistance) {
+      if (bound == null) {
+        sqrDistance = float.MaxValue;
+        return false;
+      }
+      return bound.Contains(point, out sqrDistance);
+    }
+
   }
 }

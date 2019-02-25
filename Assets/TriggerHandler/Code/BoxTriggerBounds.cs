@@ -23,6 +23,16 @@ namespace GameSpawn {
       return scaledBound.Contains(pos);
     }
 
+    public override bool Contains(Vector3 pos, out float sqrDistance) {
+      if (scaledBound.Contains(pos)){
+        sqrDistance = Vector3.SqrMagnitude(pos - transformPosition);
+        return true;
+      } else {
+        sqrDistance = float.MaxValue;
+        return false;
+      }
+    }
+
     public override void OnDrawGizmosSelected() {
       var sBound = scaledBound;
       Gizmos.color = Color.green;

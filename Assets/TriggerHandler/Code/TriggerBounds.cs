@@ -18,6 +18,8 @@ namespace GameSpawn {
 
     public abstract bool Contains(Vector3 pos);
 
+    public abstract bool Contains(Vector3 pos, out float sqrDistance);
+
     public abstract void OnDrawGizmosSelected();
   }
 }

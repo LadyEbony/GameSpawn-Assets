@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameSpawn.TriggerExamples {
-  public class Player : MonoBehaviour {
+  public class Player : MonoBehaviour, IButtonUser {
 
     public float speed = 1;
 
@@ -11,10 +11,13 @@ namespace GameSpawn.TriggerExamples {
       // The GlobalList is not restricted to TriggerEntity.
       // Any class can use it.
       GlobalList<Player>.Add(this);
+      ButtonHandler.Subscribe(this);
     }
 
     private void OnDisable() {
       GlobalList<Player>.Remove(this);
+      ButtonHandler.Unsubscribe(this);
+      //ButtonHandler.Instance.
     }
 
     void Update() {
@@ -34,31 +37,17 @@ namespace GameSpawn.TriggerExamples {
     private ButtonTrigger trigger;
 
     void HandleButtons(){
-      
-      // TriggerHandler allows you to use only 1 line.
-      var ent = TriggerHandler<AreaTrigger>.GetOverlapEntities(transform.position);
-
-      if (ent.Length > 0){
-        foreach(var e in ent)
-          e.OnTrigger();
+      if (Input.GetButtonDown("Fire1")){
+        ButtonHandler.Submit(this);
       }
-
-      // TriggerHandler will still require some logic from you.
-      // Though it greatly reduces the amount of code required.
-
-      // Assuming buttons do not overlap
-      var nTrg = TriggerHandler<ButtonTrigger>.GetOverlapEntity(transform.position);
-      if (nTrg != trigger){                     // If new trigger
-        if (trigger) trigger.ExitTrigger();     // Visualize last trigger by dimming it,    if it is not null
-        if (nTrg) nTrg.EnterTrigger();          // Visualize new trigger by brightening it, if it is not null
-      }
-      trigger = nTrg;
-
-      if (Input.GetButton("Fire1") && trigger){
-        trigger.TurnOn();
-      }
-
     }
 
+    public Vector3 GetButtonPosition() {
+      return transform.position;
+    }
+
+    public void OnStayButtons(ButtonEntity[] buttons, int size) {
+      
+    }
   }
 }
