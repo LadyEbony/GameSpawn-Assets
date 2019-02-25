@@ -5,12 +5,16 @@ using UnityEngine;
 namespace GameSpawn.TriggerExamples {
   public class Player : MonoBehaviour {
 
-    private Material mat;
-
     public float speed = 1;
 
     private void Awake() {
-      mat = GetComponent<MeshRenderer>().material;
+      // The GlobalList is not restricted to TriggerEntity.
+      // Any class can use it.
+      GlobalList<Player>.Add(this);
+    }
+
+    private void OnDestroy() {
+      GlobalList<Player>.Add(this);
     }
 
     void Update() {
@@ -27,10 +31,33 @@ namespace GameSpawn.TriggerExamples {
       transform.position += delta;
     }
 
-    void HandleButtons(){
-      var ent = TriggerHandler.GetOverlapEntity<ButtonTrigger>(transform.position);
+    private ButtonTrigger trigger;
 
-      mat.SetColor("_Color", ent ? Color.green : Color.white);
+    void HandleButtons(){
+      
+      // TriggerHandler allows you to use only 1 line.
+      var ent = TriggerHandler<AreaTrigger>.GetOverlapEntities(transform.position);
+
+      if (ent.Length > 0){
+        foreach(var e in ent)
+          e.OnTrigger();
+      }
+
+      // TriggerHandler will still require some logic from you.
+      // Though it greatly reduces the amount of code required.
+
+      // Assuming buttons do not overlap
+      var nTrg = TriggerHandler<ButtonTrigger>.GetOverlapEntity(transform.position);
+      if (nTrg != trigger){                     // If new trigger
+        if (trigger) trigger.ExitTrigger();     // Visualize last trigger by dimming it,    if it is not null
+        if (nTrg) nTrg.EnterTrigger();          // Visualize new trigger by brightening it, if it is not null
+      }
+      trigger = nTrg;
+
+      if (Input.GetButton("Fire1") && trigger){
+        trigger.TurnOn();
+      }
+
     }
 
   }
